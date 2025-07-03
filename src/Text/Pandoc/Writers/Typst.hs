@@ -243,7 +243,6 @@ blockToTypst block =
           formatalign AlignRight = "right,"
           formatalign AlignCenter = "center,"
           formatalign AlignDefault = "auto,"
-      let alignarray = parens $ mconcat $ map formatalign aligns
 
       let fromCell (Cell (_,_,kvs) alignment rowspan colspan bs) = do
             let (typstAttrs, typstTextAttrs) = pickTypstAttrs kvs
@@ -303,7 +302,7 @@ blockToTypst block =
       let table = "table("
             $$ nest 2
                 (  "columns: " <> columns <> ","
-                $$ "align: " <> alignarray <> ","
+                -- $$ "align: " <> alignarray <> ","
                 $$ toTypstPropsListTerm typstAttrs
                 $$ header
                 $$ body
