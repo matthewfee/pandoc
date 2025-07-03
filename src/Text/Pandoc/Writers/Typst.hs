@@ -236,9 +236,7 @@ blockToTypst block =
             literal $ (T.dropWhileEnd (== '.') . T.dropWhileEnd (== '0'))
                          (T.pack (printf "%0.2f" (w * 100))) <> "%"
           toPercentage ColWidthDefault = literal "auto"
-      let columns = if all (== ColWidthDefault) widths
-                       then literal $ tshow numcols
-                       else parens (commaSep (map toPercentage widths))
+      let columns = literal $ tshow numcols
       let formatalign AlignLeft = "left,"
           formatalign AlignRight = "right,"
           formatalign AlignCenter = "center,"
